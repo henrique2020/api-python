@@ -36,10 +36,17 @@ Instale todas as dependências pelo comando `pip install -r requirements.txt` ou
 ## ▶️ Execução
 
 ```cmd
-cd ./python-api
-uvicorn main:app --reload
+cd ./api
+uvicorn main:app
 ```
 
 | Comando  | Descrição                                                                 |
 | -------- | --------------------------------------------------------------------------- |
 | --reload | Recarrega automaticamente o servidor em alterações (para desenvolvimento) |
+
+_OBS.: A senha é a 1ª parte do e-mail_
+
+## ⚠️ Disclaimer
+Este projeto foi desenvolvido para trabalho o final da matéria de **Laboratório de Software (UCS)**, quaisquer informações presentes foram repassadas pelos professores.
+
+Os `nomes/emails` dos docentes foram alterados para evitar qualquer tipo de exposição indesejada por parte da universidade.

@@ -18,10 +18,10 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `lab_software`
+-- Banco de dados: `gestao_qualidade`
 --
-CREATE DATABASE IF NOT EXISTS `lab_software` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
-USE `lab_software`;
+CREATE DATABASE IF NOT EXISTS `gestao_qualidade` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
+USE `gestao_qualidade`;
 
 -- --------------------------------------------------------
 
@@ -235,18 +235,18 @@ CREATE TABLE `usuario` (
 
 INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `admin`, `id_laboratorio`, `data_acesso`, `token`, `data_expiracao`, `ativo`) VALUES
 (1, 'Administrador', 'admin@email.com', '$2b$12$LEoOnb5MZYgSQDDTinLP5u/YONrYyfHmMxpxedQBUdsI6YmDZQQMW', 1, NULL, '2025-06-13 08:06:50', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IkhlbnJpcXVlIiwiYWRtaW4iOjEsImxhYm9yYXRvcmlvIjpudWxsLCJleHAiOjE3NDk4MjM2MTB9.MThvvka28Eu4gIaCPASz0DxlteI-Qy2bBOZ1WaahLzE', '2025-06-13 14:06:50', 1),
-(2, 'Marial de Tal', 'mdt@email.com', '$2b$12$NcqD9yDsMFd72GF/yyrlgu9pJExXpveYhgpFu/cfciT1Ofrc0P7mu', 0, 1, '2025-06-05 20:36:13', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm9tZSI6Ik1hcmlhbCBkZSBUYWwiLCJhZG1pbiI6MCwibGFib3JhdG9yaW8iOm51bGwsImV4cCI6MTc0OTE3NzM3M30.xc5Ykyht4yfke_I-6PesR7cPz5IHvyxVtEygxx-NvEU', '2025-06-06 02:36:13', 0),
-(3, 'Aline Gehlen', 'agehlen1@ucs.br', '$2b$12$sM28NZ099HS4IBdz2Y2LK.LXVmbC6a8n2HsSOruDqh9ulR7pacnhi', 0, 2, NULL, NULL, NULL, 1),
-(4, 'Karen Petyele Loreno', 'kploreno@ucs.br', '$2b$12$.UmF.A1NJ8SMi8YQTb62.OwRNdTygy06hNgH9275dGKvnd8Nma9Lm', 0, 3, NULL, NULL, NULL, 1),
-(5, 'Claudia Wollheim', 'cwollhei@ucs.br', '$2b$12$QoEAKrRLVEU3oKsRKRsGKe5hrlCFcxlH4BKgsg9kQcFaeQXRfPek6', 0, 4, NULL, NULL, NULL, 1),
-(6, 'Juliane Bonfanti da Motta', 'jbmotta@ucs.br', '$2b$12$iuTEz6dXKsmSnwlPPgZnSuXL/8n5Xesw.yT9.JWbFOOH8FEetoHQi', 0, 5, NULL, NULL, NULL, 1),
-(7, 'Leonardo Rapone da Motta', 'lrmotta@ucs.br', '$2b$12$sFMqP7hCIKIMYOtgoLr/.uIspr6udbWg2GCR8umqi4QVFYfD37Qye', 0, 6, NULL, NULL, NULL, 1),
-(8, 'Cleicimara Ramos Cozen', 'cccolvara@ucs.br', '$2b$12$C8O99KZ39UPGiQ2JKfV2OuPErlJqeBBJXGbZaEYiIfBd4u5Y8KDie', 0, 7, NULL, NULL, NULL, 1),
-(9, 'Taís Sabedot Pertile', 'tspertil@ucs.br', '$2b$12$NIekmNQ7v01Tf5sU4q/yKeoMQ227C63TLE5/sNLI7S1IpS/ySA9gK', 0, 8, NULL, NULL, NULL, 1),
-(10, 'Daniel Angelo Zattera Milesi', 'dazmiles@ucs.br', '$2b$12$a3LJYez3xMK1f/ohWD3ph.xnfsW6MPRKqZKUZqEOkrNm7n/O/iAxm', 0, 1, NULL, NULL, NULL, 1),
-(11, 'Diorvania Ribeiro Giaretta', 'dcribeir@ucs.br', '$2b$12$LDT8mvjK9hXhSxL6RHhuKevah1BRwdj2xw0ZWtwMRNHNcORpV/nR6', 0, 9, NULL, NULL, NULL, 1),
-(12, 'Taciane Fulcher Ribeiro', 'tfribeiro@ucs.br', '$2b$12$/dNDtlVjxwqvO1dzsaAm.O8J5y73YMzMsFGPfHwXXWDrzld.OQQgi', 0, 10, NULL, NULL, NULL, 1),
-(13, 'Aline Benedetti Bordin', 'abenedet@ucs.br', '$2b$12$tE0rS5yaq6zDdZjinw4etesjupWTa8qKYfVLShSBQjISuQR2KDmLq', 0, 11, NULL, NULL, NULL, 1);
+(2, 'Maria de Tal', 'mdt@email.com', '$2b$12$NcqD9yDsMFd72GF/yyrlgu9pJExXpveYhgpFu/cfciT1Ofrc0P7mu', 0, 1, '2025-06-05 20:36:13', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm9tZSI6Ik1hcmlhbCBkZSBUYWwiLCJhZG1pbiI6MCwibGFib3JhdG9yaW8iOm51bGwsImV4cCI6MTc0OTE3NzM3M30.xc5Ykyht4yfke_I-6PesR7cPz5IHvyxVtEygxx-NvEU', '2025-06-06 02:36:13', 0),
+(3, 'Gertrude Burch', 'gburch@email.com', '$2b$12$sM28NZ099HS4IBdz2Y2LK.LXVmbC6a8n2HsSOruDqh9ulR7pacnhi', 0, 2, NULL, NULL, NULL, 1),
+(4, 'William Gonzales', 'wgonzales@email.com', '$2b$12$.UmF.A1NJ8SMi8YQTb62.OwRNdTygy06hNgH9275dGKvnd8Nma9Lm', 0, 3, NULL, NULL, NULL, 1),
+(5, 'Cristian Alencar Wollheim', 'cawollheim@email.com', '$2b$12$QoEAKrRLVEU3oKsRKRsGKe5hrlCFcxlH4BKgsg9kQcFaeQXRfPek6', 0, 4, NULL, NULL, NULL, 1),
+(6, 'Juliane Motta', 'jmotta@email.com', '$2b$12$iuTEz6dXKsmSnwlPPgZnSuXL/8n5Xesw.yT9.JWbFOOH8FEetoHQi', 0, 5, NULL, NULL, NULL, 1),
+(7, 'Leonardo Motta', 'lmotta@email.com', '$2b$12$sFMqP7hCIKIMYOtgoLr/.uIspr6udbWg2GCR8umqi4QVFYfD37Qye', 0, 6, NULL, NULL, NULL, 1),
+(8, 'Evelyn Ramos Hahn', 'erhahn@email.com', '$2b$12$C8O99KZ39UPGiQ2JKfV2OuPErlJqeBBJXGbZaEYiIfBd4u5Y8KDie', 0, 7, NULL, NULL, NULL, 1),
+(9, 'Taís Vasconcelos Britz', 'tvbritz@email.com', '$2b$12$NIekmNQ7v01Tf5sU4q/yKeoMQ227C63TLE5/sNLI7S1IpS/ySA9gK', 0, 8, NULL, NULL, NULL, 1),
+(10, 'Arthur Buarque', 'abuarque@emailucs.com', '$2b$12$a3LJYez3xMK1f/ohWD3ph.xnfsW6MPRKqZKUZqEOkrNm7n/O/iAxm', 0, 1, NULL, NULL, NULL, 1),
+(11, 'Pedro Henrique Martinoto', 'phmartinoto@email.com', '$2b$12$LDT8mvjK9hXhSxL6RHhuKevah1BRwdj2xw0ZWtwMRNHNcORpV/nR6', 0, 9, NULL, NULL, NULL, 1),
+(12, 'João Pedro da Silva', 'jpsilva@email.com', '$2b$12$/dNDtlVjxwqvO1dzsaAm.O8J5y73YMzMsFGPfHwXXWDrzld.OQQgi', 0, 10, NULL, NULL, NULL, 1),
+(13, 'Aline Sophia Bordin', 'asbordin@email.com', '$2b$12$tE0rS5yaq6zDdZjinw4etesjupWTa8qKYfVLShSBQjISuQR2KDmLq', 0, 11, NULL, NULL, NULL, 1);
 
 --
 -- Índices para tabelas despejadas
