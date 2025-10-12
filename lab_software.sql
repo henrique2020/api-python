@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1:3307
--- Tempo de geração: 13-Jun-2025 às 15:19
--- Versão do servidor: 10.4.25-MariaDB
--- versão do PHP: 8.1.10
+-- Host: 127.0.0.1
+-- Tempo de geração: 12/10/2025 às 17:08
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -26,17 +26,18 @@ USE `gestao_qualidade`;
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `bloco`
+-- Estrutura para tabela `bloco`
 --
 
+DROP TABLE IF EXISTS `bloco`;
 CREATE TABLE `bloco` (
   `id` int(11) NOT NULL,
   `nome` varchar(10) NOT NULL,
   `ativo` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `bloco`
+-- Despejando dados para a tabela `bloco`
 --
 
 INSERT INTO `bloco` (`id`, `nome`, `ativo`) VALUES
@@ -53,17 +54,18 @@ INSERT INTO `bloco` (`id`, `nome`, `ativo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categoria`
+-- Estrutura para tabela `categoria`
 --
 
+DROP TABLE IF EXISTS `categoria`;
 CREATE TABLE `categoria` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
   `ativo` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `categoria`
+-- Despejando dados para a tabela `categoria`
 --
 
 INSERT INTO `categoria` (`id`, `nome`, `ativo`) VALUES
@@ -77,20 +79,21 @@ INSERT INTO `categoria` (`id`, `nome`, `ativo`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `certificado`
+-- Estrutura para tabela `certificado`
 --
 
+DROP TABLE IF EXISTS `certificado`;
 CREATE TABLE `certificado` (
   `id` int(11) NOT NULL,
   `id_evento` int(11) NOT NULL,
   `numero` int(11) NOT NULL,
   `data` date NOT NULL,
   `orgao_expedidor` text NOT NULL,
-  `arquivo` text NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+  `arquivo` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `certificado`
+-- Despejando dados para a tabela `certificado`
 --
 
 INSERT INTO `certificado` (`id`, `id_evento`, `numero`, `data`, `orgao_expedidor`, `arquivo`) VALUES
@@ -100,9 +103,10 @@ INSERT INTO `certificado` (`id`, `id_evento`, `numero`, `data`, `orgao_expedidor
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `equipamento`
+-- Estrutura para tabela `equipamento`
 --
 
+DROP TABLE IF EXISTS `equipamento`;
 CREATE TABLE `equipamento` (
   `id` int(11) NOT NULL,
   `tag` int(11) NOT NULL,
@@ -111,10 +115,10 @@ CREATE TABLE `equipamento` (
   `id_modelo` int(11) NOT NULL,
   `id_laboratorio` int(11) NOT NULL,
   `ativo` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `equipamento`
+-- Despejando dados para a tabela `equipamento`
 --
 
 INSERT INTO `equipamento` (`id`, `tag`, `numero_patrimonio`, `data_implantacao`, `id_modelo`, `id_laboratorio`, `ativo`) VALUES
@@ -125,9 +129,10 @@ INSERT INTO `equipamento` (`id`, `tag`, `numero_patrimonio`, `data_implantacao`,
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `equipamento_modelo`
+-- Estrutura para tabela `equipamento_modelo`
 --
 
+DROP TABLE IF EXISTS `equipamento_modelo`;
 CREATE TABLE `equipamento_modelo` (
   `id` int(11) NOT NULL,
   `numero_patrimonio` int(11) NOT NULL,
@@ -141,10 +146,10 @@ CREATE TABLE `equipamento_modelo` (
   `tipo` enum('A','D') NOT NULL,
   `id_categoria` int(11) DEFAULT NULL,
   `ativo` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `equipamento_modelo`
+-- Despejando dados para a tabela `equipamento_modelo`
 --
 
 INSERT INTO `equipamento_modelo` (`id`, `numero_patrimonio`, `identificacao`, `equipamento`, `marca`, `criterio_aceitacao_calibracao`, `periodicidade_calibracao`, `aviso_renovacao_calibracao`, `periodicidade_manutencao`, `tipo`, `id_categoria`, `ativo`) VALUES
@@ -155,9 +160,10 @@ INSERT INTO `equipamento_modelo` (`id`, `numero_patrimonio`, `identificacao`, `e
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `evento`
+-- Estrutura para tabela `evento`
 --
 
+DROP TABLE IF EXISTS `evento`;
 CREATE TABLE `evento` (
   `id` int(11) NOT NULL,
   `id_equipamento` int(11) NOT NULL,
@@ -166,24 +172,25 @@ CREATE TABLE `evento` (
   `data_agendada` date NOT NULL,
   `descricao` text NOT NULL,
   `custo` decimal(10,2) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `evento`
+-- Despejando dados para a tabela `evento`
 --
 
 INSERT INTO `evento` (`id`, `id_equipamento`, `tipo`, `data_criacao`, `data_agendada`, `descricao`, `custo`) VALUES
-(1, 1, 'Calibracao', '2025-06-04 10:48:36', '2025-05-30', 'Vencimento da última calibração', '1299.00'),
-(2, 3, 'Calibracao', '2023-08-17 17:02:43', '2023-08-20', 'Calibração necessária para equipamento novo', '2000.00'),
-(3, 3, 'Manutencao', '2024-02-23 09:40:00', '2024-03-14', 'Aparelho não estava exibindo as informções', '300.00'),
-(4, 3, 'Qualificacao', '2024-04-14 07:11:09', '2024-04-04', '', '749.99');
+(1, 1, 'Calibracao', '2025-06-04 10:48:36', '2025-05-30', 'Vencimento da última calibração', 1299.00),
+(2, 3, 'Calibracao', '2023-08-17 17:02:43', '2023-08-20', 'Calibração necessária para equipamento novo', 2000.00),
+(3, 3, 'Manutencao', '2024-02-23 09:40:00', '2024-03-14', 'Aparelho não estava exibindo as informções', 300.00),
+(4, 3, 'Qualificacao', '2024-04-14 07:11:09', '2024-04-04', '', 749.99);
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `laboratorio`
+-- Estrutura para tabela `laboratorio`
 --
 
+DROP TABLE IF EXISTS `laboratorio`;
 CREATE TABLE `laboratorio` (
   `id` int(11) NOT NULL,
   `nome` text NOT NULL,
@@ -191,10 +198,10 @@ CREATE TABLE `laboratorio` (
   `id_bloco` int(11) NOT NULL,
   `sala` varchar(4) NOT NULL,
   `ativo` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `laboratorio`
+-- Despejando dados para a tabela `laboratorio`
 --
 
 INSERT INTO `laboratorio` (`id`, `nome`, `sigla`, `id_bloco`, `sala`, `ativo`) VALUES
@@ -213,9 +220,10 @@ INSERT INTO `laboratorio` (`id`, `nome`, `sigla`, `id_bloco`, `sala`, `ativo`) V
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuario`
+-- Estrutura para tabela `usuario`
 --
 
+DROP TABLE IF EXISTS `usuario`;
 CREATE TABLE `usuario` (
   `id` int(11) NOT NULL,
   `nome` varchar(100) NOT NULL,
@@ -227,53 +235,53 @@ CREATE TABLE `usuario` (
   `token` varchar(256) DEFAULT NULL,
   `data_expiracao` datetime DEFAULT NULL,
   `ativo` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `usuario`
+-- Despejando dados para a tabela `usuario`
 --
 
 INSERT INTO `usuario` (`id`, `nome`, `email`, `senha`, `admin`, `id_laboratorio`, `data_acesso`, `token`, `data_expiracao`, `ativo`) VALUES
-(1, 'Administrador', 'admin@email.com', '$2b$12$LEoOnb5MZYgSQDDTinLP5u/YONrYyfHmMxpxedQBUdsI6YmDZQQMW', 1, NULL, '2025-06-13 08:06:50', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IkhlbnJpcXVlIiwiYWRtaW4iOjEsImxhYm9yYXRvcmlvIjpudWxsLCJleHAiOjE3NDk4MjM2MTB9.MThvvka28Eu4gIaCPASz0DxlteI-Qy2bBOZ1WaahLzE', '2025-06-13 14:06:50', 1),
-(2, 'Maria de Tal', 'mdt@email.com', '$2b$12$NcqD9yDsMFd72GF/yyrlgu9pJExXpveYhgpFu/cfciT1Ofrc0P7mu', 0, 1, '2025-06-05 20:36:13', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm9tZSI6Ik1hcmlhbCBkZSBUYWwiLCJhZG1pbiI6MCwibGFib3JhdG9yaW8iOm51bGwsImV4cCI6MTc0OTE3NzM3M30.xc5Ykyht4yfke_I-6PesR7cPz5IHvyxVtEygxx-NvEU', '2025-06-06 02:36:13', 0),
-(3, 'Gertrude Burch', 'gburch@email.com', '$2b$12$sM28NZ099HS4IBdz2Y2LK.LXVmbC6a8n2HsSOruDqh9ulR7pacnhi', 0, 2, NULL, NULL, NULL, 1),
-(4, 'William Gonzales', 'wgonzales@email.com', '$2b$12$.UmF.A1NJ8SMi8YQTb62.OwRNdTygy06hNgH9275dGKvnd8Nma9Lm', 0, 3, NULL, NULL, NULL, 1),
-(5, 'Cristian Alencar Wollheim', 'cawollheim@email.com', '$2b$12$QoEAKrRLVEU3oKsRKRsGKe5hrlCFcxlH4BKgsg9kQcFaeQXRfPek6', 0, 4, NULL, NULL, NULL, 1),
-(6, 'Juliane Motta', 'jmotta@email.com', '$2b$12$iuTEz6dXKsmSnwlPPgZnSuXL/8n5Xesw.yT9.JWbFOOH8FEetoHQi', 0, 5, NULL, NULL, NULL, 1),
-(7, 'Leonardo Motta', 'lmotta@email.com', '$2b$12$sFMqP7hCIKIMYOtgoLr/.uIspr6udbWg2GCR8umqi4QVFYfD37Qye', 0, 6, NULL, NULL, NULL, 1),
-(8, 'Evelyn Ramos Hahn', 'erhahn@email.com', '$2b$12$C8O99KZ39UPGiQ2JKfV2OuPErlJqeBBJXGbZaEYiIfBd4u5Y8KDie', 0, 7, NULL, NULL, NULL, 1),
-(9, 'Taís Vasconcelos Britz', 'tvbritz@email.com', '$2b$12$NIekmNQ7v01Tf5sU4q/yKeoMQ227C63TLE5/sNLI7S1IpS/ySA9gK', 0, 8, NULL, NULL, NULL, 1),
-(10, 'Arthur Buarque', 'abuarque@emailucs.com', '$2b$12$a3LJYez3xMK1f/ohWD3ph.xnfsW6MPRKqZKUZqEOkrNm7n/O/iAxm', 0, 1, NULL, NULL, NULL, 1),
-(11, 'Pedro Henrique Martinoto', 'phmartinoto@email.com', '$2b$12$LDT8mvjK9hXhSxL6RHhuKevah1BRwdj2xw0ZWtwMRNHNcORpV/nR6', 0, 9, NULL, NULL, NULL, 1),
-(12, 'João Pedro da Silva', 'jpsilva@email.com', '$2b$12$/dNDtlVjxwqvO1dzsaAm.O8J5y73YMzMsFGPfHwXXWDrzld.OQQgi', 0, 10, NULL, NULL, NULL, 1),
-(13, 'Aline Sophia Bordin', 'asbordin@email.com', '$2b$12$tE0rS5yaq6zDdZjinw4etesjupWTa8qKYfVLShSBQjISuQR2KDmLq', 0, 11, NULL, NULL, NULL, 1);
+(1, 'Administrador', 'admin@email.com', '$2b$12$FFgsHkUdKtU2KTcNu65Hg.XL4XEeFDDIwPY9.p0Xq3fKVXou4MsRO', 1, NULL, '2025-10-12 12:00:24', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwibm9tZSI6IkFkbWluaXN0cmFkb3IiLCJhZG1pbiI6MSwibGFib3JhdG9yaW8iOm51bGwsImV4cCI6MTc2MDI5MjAyNH0.8oBC3VLbgiXHqceVNazP0crzYrcwXcEeZsRHxvhcJtk', '2025-10-12 18:00:24', 1),
+(2, 'Maria de Tal', 'mdt@email.com', '$2b$12$1/YZPN/oshEDwh6b3.D7tuAT0U8ppEXGJCZDRd3bqovE4.JwNc7ji', 0, 1, '2025-06-05 20:36:13', 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6Miwibm9tZSI6Ik1hcmlhbCBkZSBUYWwiLCJhZG1pbiI6MCwibGFib3JhdG9yaW8iOm51bGwsImV4cCI6MTc0OTE3NzM3M30.xc5Ykyht4yfke_I-6PesR7cPz5IHvyxVtEygxx-NvEU', '2025-06-06 02:36:13', 0),
+(3, 'Gertrude Burch', 'gburch@email.com', '$2b$12$jqVzYBCn.wEdCyXdi6NZpugGRsJdClRYc4uM8cRx5ktlesjKfHfki', 0, 2, NULL, NULL, NULL, 1),
+(4, 'William Gonzales', 'wgonzales@email.com', '$2b$12$X1l1dXR9Pwo.ZAoHO8WL0.ckqyGsNkxuYV7wN66L.Rz5Iu8113s3i', 0, 3, NULL, NULL, NULL, 1),
+(5, 'Cristian Alencar Wollheim', 'cawollheim@email.com', '$2b$12$O.cCda3HbOtmxypGbdvibe9l5ffdAKhAsGgl1Wc4r3bRgt84oGRKK', 0, 4, NULL, NULL, NULL, 1),
+(6, 'Juliane Motta', 'jmotta@email.com', '$2b$12$P6uGRSYiUlSq4iJe5Uvh2.0JA5rsJkh9loyfiYswFzyaAmCcirvJK', 0, 5, NULL, NULL, NULL, 1),
+(7, 'Leonardo Motta', 'lmotta@email.com', '$2b$12$SUm2ZDEYwIDTN5E14Bn7Iu2/IfCBM6e3AzlMxT5OU8MazwlKIiAsK', 0, 6, NULL, NULL, NULL, 1),
+(8, 'Evelyn Ramos Hahn', 'erhahn@email.com', '$2b$12$.sEGYRuHOQmtBhR9K6vmJuG2uuaNzuJdqu6XemHv0qKpurDGwfWt6', 0, 7, NULL, NULL, NULL, 1),
+(9, 'Taís Vasconcelos Britz', 'tvbritz@email.com', '$2b$12$33daZw1wQiulrmcSdstVqOAxbA8cGKOS27Y1DR8gpHR1.MqOjaUvO', 0, 8, NULL, NULL, NULL, 1),
+(10, 'Arthur Buarque', 'abuarque@emailucs.com', '$2b$12$TAaXty/UO.KqQkEjHefLR.dirakXP3dLqCJvWpqsumzKMFFxtZ69i', 0, 1, NULL, NULL, NULL, 1),
+(11, 'Pedro Henrique Martinoto', 'phmartinoto@email.com', '$2b$12$PPd6m5ZaVq5/wo.T3Y9AoOUC0X57eW9onN.9uoz4BNMZB2TIhCOYG', 0, 9, NULL, NULL, NULL, 1),
+(12, 'João Pedro da Silva', 'jpsilva@email.com', '$2b$12$PNM.cl0pbE99qD8mJf99BuelFHp29Wkgho3TdYK.4XuCyKuDNPSWG', 0, 10, NULL, NULL, NULL, 1),
+(13, 'Aline Sophia Bordin', 'asbordin@email.com', '$2b$12$BR/wVeV3G/p6Rm5yn0P4UunQ3md7WU6GuBJl38X8iSJMHuJnEUn1K', 0, 11, NULL, NULL, NULL, 1);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `bloco`
+-- Índices de tabela `bloco`
 --
 ALTER TABLE `bloco`
   ADD PRIMARY KEY (`id`);
 
 --
--- Índices para tabela `categoria`
+-- Índices de tabela `categoria`
 --
 ALTER TABLE `categoria`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nome` (`nome`);
 
 --
--- Índices para tabela `certificado`
+-- Índices de tabela `certificado`
 --
 ALTER TABLE `certificado`
   ADD PRIMARY KEY (`id`),
   ADD KEY `certificado_evento` (`id_evento`);
 
 --
--- Índices para tabela `equipamento`
+-- Índices de tabela `equipamento`
 --
 ALTER TABLE `equipamento`
   ADD PRIMARY KEY (`id`),
@@ -282,7 +290,7 @@ ALTER TABLE `equipamento`
   ADD KEY `localizacao` (`id_laboratorio`);
 
 --
--- Índices para tabela `equipamento_modelo`
+-- Índices de tabela `equipamento_modelo`
 --
 ALTER TABLE `equipamento_modelo`
   ADD PRIMARY KEY (`id`),
@@ -290,21 +298,21 @@ ALTER TABLE `equipamento_modelo`
   ADD KEY `id_categoria` (`id_categoria`);
 
 --
--- Índices para tabela `evento`
+-- Índices de tabela `evento`
 --
 ALTER TABLE `evento`
   ADD PRIMARY KEY (`id`),
   ADD KEY `evento_equipamento` (`id_equipamento`);
 
 --
--- Índices para tabela `laboratorio`
+-- Índices de tabela `laboratorio`
 --
 ALTER TABLE `laboratorio`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `id_bloco` (`id_bloco`,`sala`);
 
 --
--- Índices para tabela `usuario`
+-- Índices de tabela `usuario`
 --
 ALTER TABLE `usuario`
   ADD PRIMARY KEY (`id`),
@@ -312,7 +320,7 @@ ALTER TABLE `usuario`
   ADD KEY `id_bloco` (`id_laboratorio`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
@@ -364,42 +372,42 @@ ALTER TABLE `usuario`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `certificado`
+-- Restrições para tabelas `certificado`
 --
 ALTER TABLE `certificado`
   ADD CONSTRAINT `certificado_evento` FOREIGN KEY (`id_evento`) REFERENCES `evento` (`id`);
 
 --
--- Limitadores para a tabela `equipamento`
+-- Restrições para tabelas `equipamento`
 --
 ALTER TABLE `equipamento`
   ADD CONSTRAINT `equipamento_equipamentoModelo` FOREIGN KEY (`id_modelo`) REFERENCES `equipamento_modelo` (`id`),
   ADD CONSTRAINT `equipamento_laboratorio` FOREIGN KEY (`id_laboratorio`) REFERENCES `laboratorio` (`id`);
 
 --
--- Limitadores para a tabela `equipamento_modelo`
+-- Restrições para tabelas `equipamento_modelo`
 --
 ALTER TABLE `equipamento_modelo`
   ADD CONSTRAINT `equipamentoModelo_categoria` FOREIGN KEY (`id_categoria`) REFERENCES `categoria` (`id`);
 
 --
--- Limitadores para a tabela `evento`
+-- Restrições para tabelas `evento`
 --
 ALTER TABLE `evento`
   ADD CONSTRAINT `evento_equipamento` FOREIGN KEY (`id_equipamento`) REFERENCES `equipamento` (`id`);
 
 --
--- Limitadores para a tabela `laboratorio`
+-- Restrições para tabelas `laboratorio`
 --
 ALTER TABLE `laboratorio`
   ADD CONSTRAINT `laboratorio_bloco` FOREIGN KEY (`id_bloco`) REFERENCES `bloco` (`id`);
 
 --
--- Limitadores para a tabela `usuario`
+-- Restrições para tabelas `usuario`
 --
 ALTER TABLE `usuario`
   ADD CONSTRAINT `usuario_laboratorio` FOREIGN KEY (`id_laboratorio`) REFERENCES `laboratorio` (`id`);
