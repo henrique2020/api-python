@@ -17,7 +17,7 @@ Instale todas as dependências pelo comando `pip install -r requirements.txt` ou
 
 ```
 .
-├── python-api/
+├── api/
 │   ├── dao/
 │   │   ├── Database.py
 │   │   ├── ExemploDAO.py
